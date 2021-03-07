@@ -1,0 +1,3 @@
+slack:
+    web_hook: ''
+    message: 'Hello!'
