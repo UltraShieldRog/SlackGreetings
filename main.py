@@ -4,12 +4,15 @@ import shutil
 import time
 import argparse
 import yaml
+from datetime import datetime
 
 from functions import time_converter
 from slack import SlackMessaging
 
+
 def main(cfg):
-    slack_messager = SlackMessaging(cfg['slack']['web_hook'])
+    scheduled_time = cfg['slack']['time'] if cfg['slack']['time'] else None
+    slack_messager = SlackMessaging(cfg['slack']['channel'], scheduled_time, cfg['slack']['token'])
 
     try:
         slack_messager.send_message(
